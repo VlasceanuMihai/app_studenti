@@ -1,18 +1,18 @@
 package com.studenti.studenti.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-
-/**
- * Project: studenti
- * Author: mihai
- * Date: 1/24/2021
- */
 
 @Entity
 @Table(name = "studenti_to_materii")
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class StudentiToMaterii {
 
     @Id

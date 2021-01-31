@@ -1,7 +1,8 @@
 package com.studenti.studenti.dto;
 
-import lombok.Builder;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -10,20 +11,18 @@ import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 @Data
-@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class StudentDto {
 
     @NotNull(message = "Nume cannot be null")
     private String nume;
 
-    @NotNull(message = "Nume cannot be null")
-    private String prenume;
-
     @NotNull
     @Past
     private LocalDate dateOfBirth;
 
-    @NotNull(message = "Nume cannot be null")
+    @NotNull(message = "Cnp cannot be null")
     private String cnp;
 
     @NotNull

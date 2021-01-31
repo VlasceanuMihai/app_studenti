@@ -12,8 +12,8 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = {"nume"})
-@ToString(of = {"nume"})
+@EqualsAndHashCode(of = {"nume", "cnp"})
+@ToString(of = {"nume", "cnp"})
 public class Profesor {
 
     @Id
