@@ -13,8 +13,8 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of = {"cnp"})
-@ToString(of = {"nume", "prenume", "cnp"})
+@EqualsAndHashCode(of = {"cnp", "email"})
+@ToString(of = {"nume", "dateOfBirth", "cnp", "email"})
 public class Student {
 
     @Id
@@ -24,9 +24,6 @@ public class Student {
 
     @Column(nullable = false)
     public String nume;
-
-    @Column(nullable = false)
-    public String prenume;
 
     @Column(name = "date_of_birth", nullable = false)
     public LocalDate dateOfBirth;
