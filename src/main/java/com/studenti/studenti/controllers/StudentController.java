@@ -42,6 +42,8 @@ public class StudentController {
     }
 
     @PostMapping("/student/save")
+
+
     public ResponseEntity<Object> saveStudent(@Valid @RequestBody StudentDto studentDto) {
         return ResponseEntity.ok(this.universityService.saveStudent(studentDto));
     }
