@@ -2,9 +2,7 @@ package com.studenti.studenti.models;
 
 import lombok.*;
 
-import javax.naming.spi.ObjectFactory;
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -21,28 +19,22 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
-    @NotNull
+    @Column(nullable = false)
     private String firstName;
 
-    @Column
-    @NotNull
+    @Column(nullable = false)
     private String lastName;
 
-    @Column(name = "email", unique = true)
-    @NotNull
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column
-    @NotNull
+    @Column(nullable = false)
     private String password;
 
-    @Column
-    @NotNull
+    @Column(nullable = false)
     private boolean enabled;
 
-    @Column
-    @NotNull
+    @Column(nullable = false)
     private boolean isUsing2FA;
 
     @Column
@@ -50,7 +42,7 @@ public class User {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",
-            joinColumns = @JoinColumn(name = "id", referencedColumnName = "id"),
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private List<Role> roles;
 }
