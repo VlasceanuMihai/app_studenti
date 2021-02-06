@@ -8,6 +8,7 @@ import com.studenti.studenti.repository.RoleRepository;
 import com.studenti.studenti.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,17 +21,20 @@ public class RegistrationService {
     private Privilege DEFAULT_PRIVILEGE = Privilege.builder().status(PrivilegeStatus.ALL.name()).build();
     private Role DEFAULT_ROLE = Role.builder().status(RoleStatus.USER_DEFAULT.name()).build();
 
-    private UserRepository userRepository;
-    private RoleRepository roleRepository;
-    private PrivilegeRepository privilegeRepository;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final PrivilegeRepository privilegeRepository;
+    private PasswordEncoder encoder;
 
     @Autowired
     public RegistrationService(UserRepository userRepository,
                                RoleRepository roleRepository,
-                               PrivilegeRepository privilegeRepository) {
+                               PrivilegeRepository privilegeRepository,
+                               PasswordEncoder encoder) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.privilegeRepository = privilegeRepository;
+        this.encoder = encoder;
     }
 
     @Transactional
@@ -47,7 +51,7 @@ public class RegistrationService {
                 .firstName(userDto.getFirstName())
                 .lastName(userDto.getLastName())
                 .email(userDto.getEmail())
-                .password(userDto.getPassword())
+                .password(encoder.encode(userDto.getPassword()))
                 .roles(Collections.singletonList(role))
                 .build();
 
